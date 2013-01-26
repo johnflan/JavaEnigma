@@ -7,12 +7,19 @@ public class EnigmaMachine {
 	
 	EnigmaMachine() throws Exception{
 		
-		mechanism = new Mechanism(new Rotor(RotorType.I),
-									new Rotor(RotorType.II),
-									new Rotor(RotorType.III),
-									null,
-									new Reflector(ReflectorType.Umkehrwalze_B),
-									null);
+//		mechanism = new Mechanism(	new Rotor(RotorType.I),
+//									new Rotor(RotorType.II),
+//									new Rotor(RotorType.III),
+//									null,
+//									new Reflector(ReflectorType.Umkehrwalze_B),
+//									null);
+		
+		mechanism = new Mechanism(	new Rotor(RotorType.I),
+				null,
+				null,
+				null,
+				null,
+				null);
 
 	}
 	

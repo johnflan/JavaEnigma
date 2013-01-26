@@ -9,7 +9,6 @@ public class Mechanism {
 	private Reflector reflector;
 	private PlugBoard plugBoard;
 
-	
 	Mechanism(Rotor rotor1, Rotor rotor2, Rotor rotor3, Rotor rotor4, Reflector reflector, PlugBoard plugBoard){
 		this.rotor1 = rotor1;
 		this.rotor2 = rotor2;
@@ -20,10 +19,9 @@ public class Mechanism {
 	}
 	
 	public char encode(char pt) throws Exception{
-		char ct = rotor1(pt);
-		
 		incrementCounters();
-		return ct;
+		
+		return rotor1(pt);
 	}
 	
 	private char rotor1(char c) throws Exception{
@@ -35,7 +33,7 @@ public class Mechanism {
 	private char rotor2(char c) throws Exception{
 		if (rotor2 == null)
 			return reflector(c);
-		return rotor2.out( rotor3(rotor2.in(c)));
+		return rotor2.out( rotor3( rotor2.in(c) ));
 	}
 	
 	private char rotor3(char c) throws Exception{

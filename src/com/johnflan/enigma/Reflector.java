@@ -9,6 +9,8 @@ public class Reflector {
 		mapping = reflector.getMapping();
 	}
 
+	
+
 	public char reflect(char c) throws Exception {
 		int value = charIntValue(c);
 		if (value > 25 || value < 0){

@@ -3,6 +3,8 @@ package com.johnflan.enigma;
 public class Rotor {
 	
 	private char[] mapping;
+	private char[] reverseMapping;
+	private int[] notchSteps;
 	private int rotorSetting;
 	private int startSetting;
 	private static final int ASCII_OFFSET = 65;
@@ -15,28 +17,34 @@ public class Rotor {
 	Rotor(RotorType rotor) throws Exception{
 		this.startSetting = 0;
 		mapping = rotor.getMapping();
+		reverseMapping();
+		buildNotchSteps(rotor.getNotchChars());
+	}
+	
+	private void reverseMapping() throws Exception {
+		reverseMapping = new char[26];
+		for (int i = 0; i < mapping.length; i++){
+			int j = charIntValue(mapping[i]);
+			reverseMapping[j] = intCharValue(i);
+		}
 	}
 	
 	public char in(char charInput) throws Exception{
 		int value = charIntValue(charInput);
-		int convertedMapping = (value + rotorSetting) % 26;
+		int convertedMapping = (value + rotorSetting) % 25;
 		return mapping[convertedMapping];
 	}
 	
 	
 	public char out(char charInput) throws Exception{
 		
-		for (int i = 0; i < 26; i++){
-			if (mapping[i] == charInput){
-				return Character.toChars(i + ASCII_OFFSET)[0];
-			}
-		}
-		
-		throw new Exception("Character output mapping not found for: " + charInput);
+		int value = charIntValue(charInput);
+		int convertedMapping = (value + rotorSetting) % 25;
+		return reverseMapping[convertedMapping];
 	}
 	
 	public Boolean incrementCounter(){
-		rotorSetting = ++rotorSetting % 26;
+		rotorSetting = ++rotorSetting % 25;
 		return rotorSetting == startSetting ? true : false;
 	}
 
@@ -49,5 +57,17 @@ public class Rotor {
 		}
 		
 		return value;
+	}
+	
+	private void buildNotchSteps(char[] notchChars){
+		notchSteps = new int[notchChars.length];
+		for(int i = 0; i < notchChars.length; i++){
+			int notchCharLocation = (int) notchChars[i];
+			notchSteps[i] = notchCharLocation - ASCII_OFFSET;
+		}
+	}
+	
+	private char intCharValue(int input){
+		return (char) (input + ASCII_OFFSET);
 	}
 }

@@ -323,11 +323,11 @@ public class MechanismTest {
 	
 	private void resetMechanism() throws Exception{
 		
-		mechanism = new Mechanism(	null,
-				null,
-				null,
-				null,
-				new Reflector(ReflectorType.Umkehrwalze_C),
+		mechanism = new Mechanism(
+				RotorType.I,
+				RotorType.II,
+				RotorType.III,
+				ReflectorType.Umkehrwalze_C,
 				null);
 	}
 

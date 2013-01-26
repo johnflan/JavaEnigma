@@ -11,11 +11,8 @@ public class Reflector {
 
 	
 
-	public char reflect(char c) throws Exception {
+	public char reflect(char c){
 		int value = charIntValue(c);
-		if (value > 25 || value < 0){
-			throw new Exception("invalid cipher input");
-		}
 		
 		return mapping[value];
 	}

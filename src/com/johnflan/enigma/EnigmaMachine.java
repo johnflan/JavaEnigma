@@ -5,23 +5,17 @@ public class EnigmaMachine {
 	
 	private Mechanism mechanism;
 	
-	EnigmaMachine() throws Exception{
-		
-//		mechanism = new Mechanism(	new Rotor(RotorType.I),
-//									new Rotor(RotorType.II),
-//									new Rotor(RotorType.III),
-//									null,
-//									new Reflector(ReflectorType.Umkehrwalze_B),
-//									null);
-		
-		mechanism = new Mechanism(	new Rotor(RotorType.I),
-				null,
-				null,
-				null,
-				null,
+	public EnigmaMachine() {
+		mechanism = new Mechanism(	
+				RotorType.I,
+				RotorType.II,
+				RotorType.III,
+				ReflectorType.Umkehrwalze_B,
 				null);
-
 	}
+		
+
+
 	
 	public String encryptString(String input) throws Exception{
 		input.toUpperCase();

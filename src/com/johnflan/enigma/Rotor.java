@@ -8,18 +8,18 @@ public class Rotor {
 	private int rotorPosition = 0;
 	private static final int ASCII_OFFSET = 65;
 	
-	Rotor(int startSetting, RotorType rotor) throws Exception{
+	Rotor(int startSetting, RotorType rotor) {
 		mapping = rotor.getMapping();
 	}
 	
-	Rotor(RotorType rotor) throws Exception{
+	Rotor(RotorType rotor){
 
 		mapping = rotor.getMapping();
 		reverseMapping();
 		buildNotchSteps(rotor.getNotchChars());
 	}
 	
-	private void reverseMapping() throws Exception {
+	private void reverseMapping() {
 		reverseMapping = new char[26];
 		for (int i = 0; i < mapping.length; i++){
 			int j = charIntValue(mapping[i]);
@@ -27,24 +27,39 @@ public class Rotor {
 		}
 	}
 	
-	public char in(char charInput) throws Exception{
+	public char in(char charInput) {
 		int value = charIntValue(charInput);
-		int convertedMapping = (value + rotorPosition) % 25;
+		int convertedMapping = (value + rotorPosition) % 26;
 	
 		char output = mapping[convertedMapping];
 		
-		char convertedValue = intCharValue(charIntValue(output) - rotorPosition);
+		char convertedValue = convertRotorOutputForNotchPosition(output);
 		
 		System.out.println(charInput + " -> " + convertedValue);
 		return convertedValue;
 	}
 	
 	
-	public char out(char charInput) throws Exception{
+	public char out(char charInput){
 		
 		int value = charIntValue(charInput);
-		int convertedMapping = (value + rotorPosition) % 25;
-		return reverseMapping[convertedMapping];
+		int convertedMapping = (value + rotorPosition) % 26;
+		
+		char output = reverseMapping[convertedMapping];
+		char convertedValue = convertRotorOutputForNotchPosition(output);
+
+		System.out.println(charInput + " -> " + convertedValue);
+		return convertedValue;
+	}
+	
+	private char convertRotorOutputForNotchPosition(char outputChar) {
+		int outputCharIntValue = charIntValue(outputChar);
+		int convertedValue = outputCharIntValue - rotorPosition;
+		
+		if (convertedValue < 0){
+			convertedValue = 26 + convertedValue;
+		} 
+		return intCharValue(convertedValue);
 	}
 	
 	public boolean inNotch(){
@@ -66,14 +81,10 @@ public class Rotor {
 		}
 	}
 
-	private int charIntValue(char input) throws Exception{
+	private int charIntValue(char input){
 		int value = (int) input;
 		value = value - ASCII_OFFSET;
-		
-		if (value > 25 || value < 0){
-			throw new Exception("invalid cipher input");
-		}
-		
+
 		return value;
 	}
 	

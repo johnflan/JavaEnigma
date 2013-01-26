@@ -24,10 +24,30 @@ public class EnigmaDefaultSetupComparisonTest {
 		}
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void confirmedEnigmaExample(){
 		String plainText = "ABCDEFG";
 		String referenceCipherText = "BJELRQZ";
+		String cipherText = "";
+		
+		for (char pt : plainText.toCharArray()){
+			try {
+				cipherText += mechanism.encode(pt);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("Resulting cipherText: " + cipherText);
+		Assert.assertEquals(cipherText, referenceCipherText);
+		
+	}
+	
+	
+	@Test
+	public void confirmedEnigmaExampleReversed(){
+		String plainText = "BJELRQZ";
+		String referenceCipherText = "ABCDEFG";
 		String cipherText = "";
 		
 		for (char pt : plainText.toCharArray()){

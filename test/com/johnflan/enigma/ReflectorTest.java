@@ -1,8 +1,5 @@
 package com.johnflan.enigma;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

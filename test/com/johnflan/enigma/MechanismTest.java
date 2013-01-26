@@ -3,6 +3,7 @@ package com.johnflan.enigma;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 public class MechanismTest {
 	
 	Mechanism mechanism;

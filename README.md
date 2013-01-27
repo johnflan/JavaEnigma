@@ -49,9 +49,9 @@ cables in addition to custom start positions for rotors 1-3.
                                    .addRotor1(RotorType.I, 'H')
                                    .addRotor2(RotorType.II, 'A')
                                    .addRotor3(RotorType.III, 'A')
-                                   .addReflector(ReflectorType.B)                                                                                                                                                                       .addPlugBoard(plugboard)
+                                   .addReflector(ReflectorType.B)  
+                                   .addPlugBoard(plugboard)
                                    .build();
-
 
 <!---### Custom rotors --->
 

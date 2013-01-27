@@ -3,7 +3,7 @@ package com.johnflan.enigma;
 import com.johnflan.enigma.plugboard.PlugBoard;
 import com.johnflan.enigma.reflector.ReflectorType;
 import com.johnflan.enigma.rotor.RotorType;
-import com.johnflan.enigma.scrambler.Scrambler;
+import com.johnflan.enigma.scrambler.ScramblerImpl;
 
 abstract class EnigmaMachineBuilder {
 	
@@ -26,7 +26,7 @@ abstract class EnigmaMachineBuilder {
 		protected PlugBoard plugBoard;
 		protected ReflectorType reflector;
 		
-		protected Scrambler scrambler;
+		protected ScramblerImpl scrambler;
 		protected EnigmaMachine enigmaMachine;
 		
 		public Builder(RotorType rotor){
@@ -95,7 +95,7 @@ abstract class EnigmaMachineBuilder {
 			rotor3.setStartPosition(rotor3StartPosition);
 			rotor4.setStartPosition(rotor4StartPosition);
 			
-			scrambler = new Scrambler(
+			scrambler = new ScramblerImpl(
 					rotor1,
 					rotor2,
 					rotor3,

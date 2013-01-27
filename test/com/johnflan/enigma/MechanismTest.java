@@ -5,12 +5,12 @@ import org.testng.annotations.Test;
 
 import com.johnflan.enigma.reflector.ReflectorType;
 import com.johnflan.enigma.rotor.RotorType;
-import com.johnflan.enigma.scrambler.Scrambler;
+import com.johnflan.enigma.scrambler.ScramblerImpl;
 
 
 public class MechanismTest {
 	
-	Scrambler mechanism;
+	ScramblerImpl mechanism;
 	
 	private static final char A = 'A';
 	private static final char B = 'B';
@@ -327,7 +327,7 @@ public class MechanismTest {
 	
 	private void resetMechanism() throws Exception{
 		
-		mechanism = new Scrambler(
+		mechanism = new ScramblerImpl(
 				RotorType.I,
 				RotorType.II,
 				RotorType.III,

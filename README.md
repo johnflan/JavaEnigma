@@ -1,19 +1,21 @@
 # JavaEnigma
 
-An implementation of the Nazi cipher used during World War II. Featuring:
+An implementation of the Nazi cipher machine used during World War II.
 
-+ Fluent API
-+ Unit tested
+Featuring:
+
++ Easy to use API
 + Configurable rotor, plugboard and reflectors
++ Unit tested
 + BSD Licenced
 
 ***
 
 ## Usage
 ### Basic usage
-Instantiate a new machine using the EnigmaMachineBuilder, the builder will
+Instantiate a new machine using the __EnigmaMachineBuilder__, the builder will
 prompt the user for all the required configuration returning a functioning
-EnigmaMachine instance.
+__EnigmaMachine__ instance.
 
     EnigmaMachine enigmaMachine = EnigmaMachineBuilder
                                    .addRotor1(RotorType.I)
@@ -22,10 +24,10 @@ EnigmaMachine instance.
                                    .addReflector(ReflectorType.Umkehrwalze_B)
                                    .build();
 
-The EnigmaMachine instance can encrypt a single character or process a String
-of text. The EnigmaMachine instance stores rotor positions so any additional
+The __EnigmaMachine__ instance can encrypt a single character or process a String
+of text. The __EnigmaMachine__ instance stores rotor positions so any additional
 material encrypted will be enciphered using the rotor positions after the last
-call to .encrypt().
+call to __.encrypt()__.
 
     enigmaMachine.encrypt("SETECASTRONOMY");
 
@@ -37,6 +39,13 @@ be converted to uppercase and stripped of non-compatible characters.
 
 ### Custom rotors
 
+### TODO
++ Plugboard functionality
++ Create a way to implement custom rotors and reflectors
+
+### Dependencies
++ TestNG
++ Mockito
 ***
 
 ## Implementation

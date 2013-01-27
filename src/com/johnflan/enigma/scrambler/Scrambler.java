@@ -1,4 +1,4 @@
-package com.johnflan.enigma;
+package com.johnflan.enigma.scrambler;
 
 import com.johnflan.enigma.plugboard.PlugBoard;
 import com.johnflan.enigma.reflector.Reflector;
@@ -18,15 +18,15 @@ public class Scrambler {
 	private Reflector reflector;
 	private PlugBoard plugBoard;
 
-	Scrambler(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector) {
+	public Scrambler(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector) {
 		configure(rotor1, rotor2, rotor3, null, reflector, null);
 	}
 	
-	Scrambler(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector, PlugBoard plugBoard) {
+	public Scrambler(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector, PlugBoard plugBoard) {
 		configure(rotor1, rotor2, rotor3, null, reflector, plugBoard);
 	}
 	
-	Scrambler(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, PlugBoard plugBoard) {
+	public Scrambler(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, PlugBoard plugBoard) {
 		configure(rotor1, rotor2, rotor3, rotor4, reflector, plugBoard);
 	}
 	

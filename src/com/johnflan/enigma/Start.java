@@ -1,5 +1,8 @@
 package com.johnflan.enigma;
 
+import com.johnflan.enigma.reflector.ReflectorType;
+import com.johnflan.enigma.rotor.RotorType;
+
 public class Start {
 
 	public static void main(String[] args) throws Exception {
@@ -17,5 +20,18 @@ public class Start {
 		System.out.println(ct);
 		ct = enigmaMachine.encrypt(ct);
 		System.out.println(ct);	
+	}
+	
+	
+	public void test(){
+		EnigmaMachine enigmaMachine = EnigmaMachineBuilder
+										.addRotor1(RotorType.I)
+										.addRotor2(RotorType.II, 2)
+										.addRotor3(RotorType.III)
+										.addReflector(ReflectorType.Umkehrwalze_B)
+										.build();
+		
+		enigmaMachine.encrypt("Hi");
+		enigmaMachine.encrypt('t');
 	}
 }

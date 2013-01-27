@@ -2,18 +2,19 @@ package com.johnflan.enigma;
 
 import com.johnflan.enigma.reflector.ReflectorType;
 import com.johnflan.enigma.rotor.RotorType;
+import com.johnflan.enigma.scrambler.Scrambler;
 
 
 public class EnigmaMachineImpl implements EnigmaMachine{
 	
-	private Scrambler mechanism;
+	private Scrambler scrambler;
 	
 	public EnigmaMachineImpl(Scrambler mechanism) {
-		this.mechanism = mechanism;
+		this.scrambler = mechanism;
 	}
 	
 	public EnigmaMachineImpl() {
-		mechanism = new Scrambler(	
+		scrambler = new Scrambler(	
 				RotorType.I,
 				RotorType.II,
 				RotorType.III,
@@ -36,7 +37,7 @@ public class EnigmaMachineImpl implements EnigmaMachine{
 	}
 
 	public char encrypt(char pt){
-		return mechanism.encode(pt);
+		return scrambler.encode(pt);
 	}
 
 }

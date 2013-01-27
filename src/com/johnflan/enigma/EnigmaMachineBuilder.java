@@ -1,99 +1,157 @@
 package com.johnflan.enigma;
 
 import com.johnflan.enigma.plugboard.PlugBoard;
-import com.johnflan.enigma.reflector.Reflector;
 import com.johnflan.enigma.reflector.ReflectorType;
 import com.johnflan.enigma.rotor.RotorType;
+import com.johnflan.enigma.scrambler.Scrambler;
 
-abstract class EnigmaMachineBuilder  {
+abstract class EnigmaMachineBuilder {
 	
-	protected EnigmaMachine enigmaMachine;
-	protected Scrambler scrambler;
-
-	protected RotorType rotor1;
-	protected int rotor1StartPosition;
-
-	protected RotorType rotor2;
-	protected int rotor2StartPosition;
-
-	protected RotorType rotor3;
-	protected int rotor3StartPosition;
-
-	protected RotorType rotor4;
-	protected int rotor4StartPosition;
-
-	protected PlugBoard plugBoard;
-	protected ReflectorType reflector;
 	
-	abstract public EnigmaMachineBuilder addRotor1(RotorType rotor);
-	abstract public EnigmaMachineBuilder addRotor2(RotorType rotor);
-	abstract public EnigmaMachineBuilder addRotor3(RotorType rotor);
-	abstract public EnigmaMachineBuilder addRotor4(RotorType rotor);
-	
-	abstract public EnigmaMachineBuilder withStartPosition(int startPosition);
-	
-	abstract public EnigmaMachineBuilder addPlugBoard(PlugBoard plugboard);
-	abstract public EnigmaMachineBuilder addReflector(Reflector plugboard);
-	
-	public EnigmaMachine build(){
+	public static class Builder implements AddRotor2, AddRotor3, AddRotor4OrAddReflector,
+											AddReflector, AddPlugBoardOrBuild, Build{
 		
-		rotor1.setStartPosition(1);
+		protected RotorType rotor1;
+		protected int rotor1StartPosition = 0;
+
+		protected RotorType rotor2;
+		protected int rotor2StartPosition = 0;
+
+		protected RotorType rotor3;
+		protected int rotor3StartPosition = 0;
+
+		protected RotorType rotor4;
+		protected int rotor4StartPosition = 0;
+
+		protected PlugBoard plugBoard;
+		protected ReflectorType reflector;
 		
-		scrambler = new Scrambler(
-				rotor1,
-				rotor2,
-				rotor3,
-				rotor4,
-				reflector,
-				plugBoard);
+		protected Scrambler scrambler;
+		protected EnigmaMachine enigmaMachine;
 		
-		enigmaMachine = new EnigmaMachineImpl(scrambler);
+		public Builder(RotorType rotor){
+			rotor1 = rotor;
+		}
 		
-		return enigmaMachine;
+		public Builder(RotorType rotor, int startPosition){
+			rotor1 = rotor;
+			rotor1StartPosition = startPosition;
+		}
+				
+		@Override
+		public AddRotor3 addRotor2(RotorType rotor) {
+			rotor2 = rotor;
+			return this;
+		}
+
+		@Override
+		public AddRotor3 addRotor2(RotorType rotor, int startPosition) {
+			rotor2 = rotor;
+			rotor2StartPosition = startPosition;
+			return this;
+		}
+		
+		@Override
+		public AddRotor4OrAddReflector addRotor3(RotorType rotor) {
+			rotor3 = rotor;
+			return this;
+		}
+
+		@Override
+		public AddRotor4OrAddReflector addRotor3(RotorType rotor,
+				int startPosition) {
+			rotor3 = rotor;
+			rotor3StartPosition = startPosition;
+			return this;
+		}
+		
+		@Override
+		public AddReflector addRotor4(RotorType rotor) {
+			rotor4 = rotor;
+			return this;
+		}
+
+		@Override
+		public AddReflector addRotor4(RotorType rotor, int startPosition) {
+			rotor4 = rotor;
+			rotor4StartPosition = startPosition;
+			return this;
+		}
+		
+		@Override
+		public AddPlugBoardOrBuild addReflector(ReflectorType reflector) {
+			return null;
+		}
+
+		@Override
+		public Build addPlugBoard(PlugBoard plugboard) {
+			return null;
+		}
+		
+		@Override
+		public EnigmaMachine build() {
+			rotor1.setStartPosition(rotor1StartPosition);
+			rotor2.setStartPosition(rotor2StartPosition);
+			rotor3.setStartPosition(rotor3StartPosition);
+			rotor4.setStartPosition(rotor4StartPosition);
+			
+			scrambler = new Scrambler(
+					rotor1,
+					rotor2,
+					rotor3,
+					rotor4,
+					reflector,
+					plugBoard);
+			
+			enigmaMachine = new EnigmaMachineImpl(scrambler);
+			
+			return enigmaMachine;
+		}
 	}
 	
-	private interface AddRotor{
-		public AddRotor2OrStartPos addRotor1(RotorType rotor);
+	public static AddRotor2 addRotor1(RotorType rotor){
+		Builder builder = new Builder(rotor);
+		return builder;
 	}
 	
-	private interface AddRotor2OrStartPos{
-		public AddRotor3OrStartPos addRotor2(RotorType rotor);
-		public AddRotor2 withStartPosition(int startPosition);
+	public static AddRotor2 addRotor1(RotorType rotor, int startPosition){
+		Builder builder = new Builder(rotor);
+		return builder;
 	}
 	
-	private interface AddRotor2{
-		public AddRotor3OrStartPos addRotor2(RotorType rotor);
+	
+	public interface AddRotor1{
+		public AddRotor2 addRotor1(RotorType rotor);
+		public AddRotor2 addRotor1(RotorType rotor, int startPosition);
 	}
 	
-	private interface AddRotor3OrStartPos{
-		public AddRotor4OrStartPos addRotor3(RotorType rotor);
-		public AddRotor3 withStartPosition(int startPosition);
+	
+	public interface AddRotor2{
+		public AddRotor3 addRotor2(RotorType rotor);
+		public AddRotor3 addRotor2(RotorType rotor, int startPosition);
 	}
 	
-	private interface AddRotor3{
-		public EnigmaMachineBuilder addRotor3(RotorType rotor);
+	public interface AddRotor3{
+		public AddRotor4OrAddReflector addRotor3(RotorType rotor);
+		public AddRotor4OrAddReflector addRotor3(RotorType rotor, int startPosition);
 	}
 	
-	private interface AddRotor4OrStartPos{
+	public interface AddRotor4OrAddReflector{
 		public AddReflector addRotor4(RotorType rotor);
-		public AddRotor4 withStartPosition(int startPosition);
+		public AddReflector addRotor4(RotorType rotor, int startPosition);
+		public AddPlugBoardOrBuild addReflector(ReflectorType reflector);
 	}
 	
-	private interface AddRotor4{
-		public AddReflector addRotor4(RotorType rotor);
+	public interface AddReflector{
+		public AddPlugBoardOrBuild addReflector(ReflectorType reflector);
 	}
 	
-	private interface AddReflector{
-		public AddPlugBoardOrBuild addReflector(Reflector reflector);
-	}
-	
-	private interface AddPlugBoardOrBuild{
+	public interface AddPlugBoardOrBuild{
 		public Build addPlugBoard(PlugBoard plugboard);
 		public EnigmaMachine build();
 	}
 	
-	private interface Build{
+	public interface Build{
 		public EnigmaMachine build();
 	}
-
 }

@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.johnflan.enigma.reflector.ReflectorType;
 import com.johnflan.enigma.rotor.RotorType;
+import com.johnflan.enigma.scrambler.Scrambler;
 
 public class EnigmaDefaultSetupComparisonTest {
 	

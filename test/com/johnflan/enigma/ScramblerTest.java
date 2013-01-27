@@ -3,14 +3,15 @@ package com.johnflan.enigma;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.johnflan.enigma.reflector.ReflectorType;
-import com.johnflan.enigma.rotor.RotorType;
+import com.johnflan.enigma.scrambler.Scrambler;
 import com.johnflan.enigma.scrambler.ScramblerImpl;
+import com.johnflan.enigma.scrambler.reflector.ReflectorType;
+import com.johnflan.enigma.scrambler.rotor.RotorType;
 
 
-public class MechanismTest {
+public class ScramblerTest {
 	
-	ScramblerImpl mechanism;
+	Scrambler scrambler;
 	
 	private static final char A = 'A';
 	private static final char B = 'B';
@@ -42,10 +43,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptA() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(A);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(A);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, A);
 	}
@@ -53,10 +54,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptB() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(B);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(B);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, B);
 	}
@@ -64,10 +65,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptC() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(C);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(C);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, C);
 	}
@@ -75,10 +76,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptD() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(D);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(D);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, D);
 	}
@@ -86,10 +87,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptE() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(E);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(E);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, E);
 	}
@@ -97,10 +98,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptF() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(F);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(F);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, F);
 	}
@@ -108,10 +109,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptG() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(G);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(G);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, G);
 	}
@@ -119,10 +120,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptH() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(H);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(H);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, H);
 	}
@@ -130,10 +131,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptI() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(I);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(I);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, I);
 	}
@@ -141,10 +142,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptJ() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(J);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(J);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, J);
 	}
@@ -152,10 +153,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptK() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(K);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(K);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, K);
 	}
@@ -163,10 +164,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptL() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(L);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(L);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, L);
 	}
@@ -174,10 +175,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptM() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(M);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(M);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, M);
 	}
@@ -185,10 +186,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptN() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(N);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(N);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, N);
 	}
@@ -196,10 +197,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptO() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(O);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(O);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, O);
 	}
@@ -207,10 +208,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptP() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(P);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(P);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, P);
 	}
@@ -218,10 +219,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptQ() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(Q);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(Q);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, Q);
 	}
@@ -229,10 +230,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptR() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(R);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(R);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, R);
 	}
@@ -240,10 +241,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptS() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(S);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(S);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, S);
 	}
@@ -251,10 +252,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptT() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(T);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(T);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, T);
 	}
@@ -262,10 +263,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptU() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(U);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(U);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, U);
 	}
@@ -273,10 +274,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptV() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(V);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(V);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, V);
 	}
@@ -284,10 +285,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptW() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(W);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(W);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, W);
 	}
@@ -295,10 +296,10 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptX() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(X);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(X);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, X);
 	}
@@ -306,33 +307,31 @@ public class MechanismTest {
 	@Test
 	public void firstLetterEncryptDecryptY() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(Y);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(Y);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, Y);
 	}
 	@Test
 	public void firstLetterEncryptDecryptZ() throws Exception{
 		
-		resetMechanism();
-		char ct = mechanism.encode(Z);
-		resetMechanism();
-		char pt = mechanism.encode(ct);
+		resetScrambler();
+		char ct = scrambler.encode(Z);
+		resetScrambler();
+		char pt = scrambler.encode(ct);
 		
 		Assert.assertEquals(pt, Z);
 	}
 	
 	
-	private void resetMechanism() throws Exception{
-		
-		mechanism = new ScramblerImpl(
+	private void resetScrambler() throws Exception{
+		scrambler = new ScramblerImpl(
 				RotorType.I,
 				RotorType.II,
 				RotorType.III,
-				ReflectorType.C,
-				null);
+				RotorType.IV,
+				ReflectorType.C);
 	}
-
 }

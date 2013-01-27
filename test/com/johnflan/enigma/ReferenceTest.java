@@ -4,9 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.johnflan.enigma.reflector.ReflectorType;
-import com.johnflan.enigma.rotor.RotorType;
 import com.johnflan.enigma.scrambler.ScramblerImpl;
+import com.johnflan.enigma.scrambler.reflector.ReflectorType;
+import com.johnflan.enigma.scrambler.rotor.RotorType;
 
 public class ReferenceTest {
 	

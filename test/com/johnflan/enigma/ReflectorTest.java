@@ -3,8 +3,8 @@ package com.johnflan.enigma;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.johnflan.enigma.reflector.ReflectorImpl;
-import com.johnflan.enigma.reflector.ReflectorType;
+import com.johnflan.enigma.scrambler.reflector.ReflectorImpl;
+import com.johnflan.enigma.scrambler.reflector.ReflectorType;
 
 
 public class ReflectorTest {

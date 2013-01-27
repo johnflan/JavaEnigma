@@ -4,16 +4,16 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.johnflan.enigma.plugboard.PlugBoard;
-import com.johnflan.enigma.plugboard.PlugBoardImpl;
+import com.johnflan.enigma.scrambler.plugboard.Plugboard;
+import com.johnflan.enigma.scrambler.plugboard.PlugboardImpl;
 
 public class PlugboardTest {
 	
-	PlugBoard plugBoard;
+	Plugboard plugBoard;
 	
 	@BeforeMethod
 	public void setup(){
-		plugBoard = new PlugBoardImpl();
+		plugBoard = new PlugboardImpl();
 	}
 	
 	@Test

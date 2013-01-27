@@ -3,7 +3,6 @@
 An Java implementation of the Nazi cipher machine used during World War II.
 
 __Featuring:__
-
 + Easy to use API
 + Configurable rotor, plugboard and reflectors
 + Unit tested
@@ -33,12 +32,30 @@ The enigma machine can only encrypt uppercase alphabetic characters, with no
 spaces or punctuation. Therefore all data passed to the encryption device will
 be converted to uppercase and stripped of non-compatible characters.
 
-<!--- ### Advanced usage
+    public char encrypt(char pt)
+    public String encrypt(String pt)
 
-### Custom rotors --->
+The encryption function is overloaded to accept a String of characters or a
+single character at a time - internally the char function is used.
+
+### Advanced usage
+The configuration below shows a __Plugboard__ configured with a number of
+cables in addition to custom start positions for rotors 1-3.
+
+    Plugboard plugboard = new PlugboardImpl();
+    plugboard.addCable('A', 'H').addCable('Q', 'C').addCable('P', 'A');
+
+    EnigmaMachine enigmaMachine = EnigmaMachineBuilder
+                                   .addRotor1(RotorType.I, 'H')
+                                   .addRotor2(RotorType.II, 'A')
+                                   .addRotor3(RotorType.III, 'A')
+                                   .addReflector(ReflectorType.B)                                                                                                                                                                       .addPlugBoard(plugboard)
+                                   .build();
+
+
+<!---### Custom rotors --->
 
 ### TODO
-+ Plugboard functionality
 + Increase unit test coverage
 + Create a way to implement custom rotors and reflectors
 + Rotor 4 functionality

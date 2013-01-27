@@ -1,11 +1,11 @@
-package com.johnflan.enigma.plugboard;
+package com.johnflan.enigma.scrambler.plugboard;
 
-public class PlugBoardImpl implements PlugBoard {
+public class PlugboardImpl implements Plugboard {
 	
 	private int[] plugs = new int[26];
 	private static final int ASCII_OFFSET = 65;
 	
-	public PlugBoardImpl(){
+	public PlugboardImpl(){
 		for (int i = 0; i < plugs.length; i++){
 			plugs[i] = -1;
 		}
@@ -13,22 +13,27 @@ public class PlugBoardImpl implements PlugBoard {
 
 	@Override
 	public char convert(char c) {
-
-		int plug = toInt(c);
-		if (plugs[plug] == -1){
-			return c;
-		} else {
-			return toChar(plugs[plug]);
+		
+		if (validChar(c)){
+			int plug = toInt(c);
+			if (plugs[plug] == -1){
+				return c;
+			} else {
+				return toChar(plugs[plug]);
+			}
 		}
+		return c;
 	}
 
 	@Override
-	public void addCable(char a, char b) {
+	public Plugboard addCable(char a, char b) {
 		
-		if (validChar(a) && validChar(b)){
+		if (validChar(a) && validChar(b) || a == b){
 			plugs[toInt(a)] = toInt(b);
 			plugs[toInt(b)] = toInt(a);
 		}
+		
+		return this;
 	}
 	
 	private boolean validChar(char c){

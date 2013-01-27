@@ -1,12 +1,13 @@
 package com.johnflan.enigma.scrambler;
 
-import com.johnflan.enigma.plugboard.PlugBoard;
-import com.johnflan.enigma.reflector.Reflector;
-import com.johnflan.enigma.reflector.ReflectorImpl;
-import com.johnflan.enigma.reflector.ReflectorType;
-import com.johnflan.enigma.rotor.Rotor;
-import com.johnflan.enigma.rotor.RotorImpl;
-import com.johnflan.enigma.rotor.RotorType;
+import com.johnflan.enigma.scrambler.plugboard.Plugboard;
+import com.johnflan.enigma.scrambler.plugboard.PlugboardImpl;
+import com.johnflan.enigma.scrambler.reflector.Reflector;
+import com.johnflan.enigma.scrambler.reflector.ReflectorImpl;
+import com.johnflan.enigma.scrambler.reflector.ReflectorType;
+import com.johnflan.enigma.scrambler.rotor.Rotor;
+import com.johnflan.enigma.scrambler.rotor.RotorImpl;
+import com.johnflan.enigma.scrambler.rotor.RotorType;
 
 public class ScramblerImpl implements Scrambler{
 	
@@ -16,21 +17,25 @@ public class ScramblerImpl implements Scrambler{
 	private Rotor rotor4;
 
 	private Reflector reflector;
-	private PlugBoard plugBoard;
+	private Plugboard plugBoard;
 
 	public ScramblerImpl(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector) {
 		configure(rotor1, rotor2, rotor3, null, reflector, null);
 	}
 	
-	public ScramblerImpl(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector, PlugBoard plugBoard) {
+	public ScramblerImpl(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector) {
+		configure(rotor1, rotor2, rotor3, rotor4, reflector, null);
+	}
+	
+	public ScramblerImpl(RotorType rotor1, RotorType rotor2, RotorType rotor3, ReflectorType reflector, Plugboard plugBoard) {
 		configure(rotor1, rotor2, rotor3, null, reflector, plugBoard);
 	}
 	
-	public ScramblerImpl(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, PlugBoard plugBoard) {
+	public ScramblerImpl(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, Plugboard plugBoard) {
 		configure(rotor1, rotor2, rotor3, rotor4, reflector, plugBoard);
 	}
 	
-	private void configure(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, PlugBoard plugBoard){
+	private void configure(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, Plugboard plugBoard){
 		if (rotor1 != null)
 			this.rotor1 = new RotorImpl(rotor1);
 		
@@ -46,14 +51,17 @@ public class ScramblerImpl implements Scrambler{
 		if (reflector != null)
 			this.reflector = new ReflectorImpl(reflector);
 		
-		this.plugBoard = plugBoard;
-		
+		if (plugBoard != null){
+			this.plugBoard = plugBoard;
+		} else{
+			this.plugBoard = new PlugboardImpl();
+		}
 	}
 	
 	public char encode(char pt) {
 		stepRotors();
 		
-		return rotor3(pt);
+		return plugBoard.convert(rotor3(plugBoard.convert(pt)));
 	}
 	
 	private char rotor1(char c) {
@@ -71,7 +79,7 @@ public class ScramblerImpl implements Scrambler{
 	private char rotor3(char c) {
 		if (rotor3 == null)
 			return reflector(c);
-		return rotor3.out( rotor2( rotor3.in(c) ));
+		return rotor3.out( rotor2( rotor3.in(c) ) );
 	}
 	
 	private char reflector(char c) {

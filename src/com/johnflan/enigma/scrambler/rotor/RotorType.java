@@ -1,4 +1,4 @@
-package com.johnflan.enigma.rotor;
+package com.johnflan.enigma.scrambler.rotor;
 
 public enum RotorType {
 	
@@ -20,7 +20,7 @@ public enum RotorType {
 	
 	private char[] charMapping;
 	private char[] notchChar;
-	private int startPos = 0;
+	private char startPos = 'A';
 	
 	RotorType(String charMapping){
 		this.charMapping = charMapping.toCharArray();
@@ -44,7 +44,7 @@ public enum RotorType {
 		return startPos;
 	}
 	
-	public void setStartPosition(int startPos){
+	public void setStartPosition(char startPos){
 		this.startPos = startPos;
 	}
 

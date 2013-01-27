@@ -1,4 +1,4 @@
-package com.johnflan.enigma.rotor;
+package com.johnflan.enigma.scrambler.rotor;
 
 public interface Rotor {
 	

@@ -1,4 +1,4 @@
-package com.johnflan.enigma.reflector;
+package com.johnflan.enigma.scrambler.reflector;
 
 public class ReflectorImpl implements Reflector{
 	

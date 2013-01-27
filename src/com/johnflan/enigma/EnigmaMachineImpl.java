@@ -1,8 +1,5 @@
 package com.johnflan.enigma;
 
-import com.johnflan.enigma.reflector.ReflectorType;
-import com.johnflan.enigma.rotor.RotorType;
-import com.johnflan.enigma.scrambler.ScramblerImpl;
 import com.johnflan.enigma.scrambler.Scrambler;
 
 public class EnigmaMachineImpl implements EnigmaMachine{
@@ -13,15 +10,7 @@ public class EnigmaMachineImpl implements EnigmaMachine{
 	public EnigmaMachineImpl(Scrambler scrambler) {
 		this.scrambler = scrambler;
 	}
-	
-	public EnigmaMachineImpl() {
-		scrambler = new ScramblerImpl(	
-				RotorType.I,
-				RotorType.II,
-				RotorType.III,
-				ReflectorType.B);
-	}
-	
+		
 	public String encrypt(String plainText){
 		plainText = validateInput(plainText);
 		

@@ -1,4 +1,4 @@
-package com.johnflan.enigma.rotor;
+package com.johnflan.enigma.scrambler.rotor;
 
 public class RotorImpl implements Rotor{
 	
@@ -8,8 +8,8 @@ public class RotorImpl implements Rotor{
 	private int rotorPosition = 0;
 	private static final int ASCII_OFFSET = 65;
 	
-	public RotorImpl(int startSetting, RotorType rotor) {
-		rotorPosition = startSetting;
+	public RotorImpl(char startSetting, RotorType rotor) {
+		rotorPosition = toInt(startSetting);
 		mapping = rotor.getMapping();
 	}
 	
@@ -23,13 +23,13 @@ public class RotorImpl implements Rotor{
 	private void reverseMapping() {
 		reverseMapping = new char[26];
 		for (int i = 0; i < mapping.length; i++){
-			int j = charIntValue(mapping[i]);
-			reverseMapping[j] = intCharValue(i);
+			int j = toInt(mapping[i]);
+			reverseMapping[j] = toChar(i);
 		}
 	}
 	
 	public char in(char charInput) {
-		int value = charIntValue(charInput);
+		int value = toInt(charInput);
 		int convertedMapping = (value + rotorPosition) % 26;
 	
 		char output = mapping[convertedMapping];
@@ -42,7 +42,7 @@ public class RotorImpl implements Rotor{
 	
 	public char out(char charInput){
 		
-		int value = charIntValue(charInput);
+		int value = toInt(charInput);
 		int convertedMapping = (value + rotorPosition) % 26;
 		
 		char output = reverseMapping[convertedMapping];
@@ -52,13 +52,13 @@ public class RotorImpl implements Rotor{
 	}
 	
 	private char convertRotorOutputForNotchPosition(char outputChar) {
-		int outputCharIntValue = charIntValue(outputChar);
+		int outputCharIntValue = toInt(outputChar);
 		int convertedValue = outputCharIntValue - rotorPosition;
 		
 		if (convertedValue < 0){
 			convertedValue = 26 + convertedValue;
 		} 
-		return intCharValue(convertedValue);
+		return toChar(convertedValue);
 	}
 	
 	public boolean inNotch(){
@@ -80,7 +80,7 @@ public class RotorImpl implements Rotor{
 		}
 	}
 
-	private int charIntValue(char input){
+	private int toInt(char input){
 		int value = (int) input;
 		value = value - ASCII_OFFSET;
 
@@ -95,7 +95,7 @@ public class RotorImpl implements Rotor{
 		}
 	}
 	
-	private char intCharValue(int input){
+	private char toChar(int input){
 		return (char) (input + ASCII_OFFSET);
 	}
 	

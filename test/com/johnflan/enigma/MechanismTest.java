@@ -331,7 +331,7 @@ public class MechanismTest {
 				RotorType.I,
 				RotorType.II,
 				RotorType.III,
-				ReflectorType.Umkehrwalze_C,
+				ReflectorType.C,
 				null);
 	}
 

@@ -1,15 +1,13 @@
 # JavaEnigma
 
-An implementation of the Nazi cipher machine used during World War II.
+An Java implementation of the Nazi cipher machine used during World War II.
 
-Featuring:
+__Featuring:__
 
 + Easy to use API
 + Configurable rotor, plugboard and reflectors
 + Unit tested
 + BSD Licenced
-
-***
 
 ## Usage
 ### Basic usage
@@ -21,7 +19,7 @@ __EnigmaMachine__ instance.
                                    .addRotor1(RotorType.I)
                                    .addRotor2(RotorType.II,
                                    .addRotor3(RotorType.III)
-                                   .addReflector(ReflectorType.Umkehrwalze_B)
+                                   .addReflector(ReflectorType.B)
                                    .build();
 
 The __EnigmaMachine__ instance can encrypt a single character or process a String
@@ -35,22 +33,21 @@ The enigma machine can only encrypt uppercase alphabetic characters, with no
 spaces or punctuation. Therefore all data passed to the encryption device will
 be converted to uppercase and stripped of non-compatible characters.
 
-### Advanced usage
+<!--- ### Advanced usage
 
-### Custom rotors
+### Custom rotors --->
 
 ### TODO
 + Plugboard functionality
++ Increase unit test coverage
 + Create a way to implement custom rotors and reflectors
++ Rotor 4 functionality
 
 ### Dependencies
-+ TestNG
-+ Mockito
-***
++ TestNG http://testng.org/doc/index.html
++ Mockito http://code.google.com/p/mockito/
 
-## Implementation
 
-***
 ## Thanks
 Thanks to Marcin Wrzeszcz and Hugh O'Brien for the inspiration to create the
 library.

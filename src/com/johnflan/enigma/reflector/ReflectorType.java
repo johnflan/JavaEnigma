@@ -1,13 +1,14 @@
 package com.johnflan.enigma.reflector;
 
 public enum ReflectorType {
+		
+	A("EJMZALYXVBWFCRQUONTSPIKHGD"),
+	B("YRUHQSLDPXNGOKMIEBFZCWVJAT"),
+	C("FVPJIAOYEDRZXWGCTKUQSBNMHL"),
 	
-	Umkehrwalze_B("YRUHQSLDPXNGOKMIEBFZCWVJAT"),
-	Umkehrwalze_C("FVPJIAOYEDRZXWGCTKUQSBNMHL"),
-	
-	//4 Rotor Naval Enigma used the following reflectors
-	NavalUmkehrwalze_B("ENKQAUYWJICOPBLMDXZVFTHRGS"),
-	NavalUmkehrwalze_C("RDOBJNTKVEHMLFCWZAXGYIPSUQ");
+	//Naval Enigma used the following reflectors
+	B_THIN("ENKQAUYWJICOPBLMDXZVFTHRGS"),
+	C_THIN("RDOBJNTKVEHMLFCWZAXGYIPSUQ");
 	
 	private char[] mapping;
 	

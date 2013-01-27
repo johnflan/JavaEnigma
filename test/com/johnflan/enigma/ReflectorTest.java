@@ -12,10 +12,10 @@ public class ReflectorTest {
 	private ReflectorImpl reflector;
 	
 	@Test
-	public void testReflectorAMapping() throws Exception{
+	public void testReflectorAMapping(){
 		//(AY) (BR) (CU) (DH) (EQ) (FS) (GL) (IP) (JX) (KN) (MO) (TZ) (VW)
 		
-		reflector = new ReflectorImpl(ReflectorType.Umkehrwalze_B);
+		reflector = new ReflectorImpl(ReflectorType.B);
 		Assert.assertEquals(reflector.reflect('A'), 'Y');
 		Assert.assertEquals(reflector.reflect('R'), 'B');
 		Assert.assertEquals(reflector.reflect('C'), 'U');
@@ -33,9 +33,9 @@ public class ReflectorTest {
 	}
 	
 	@Test
-	public void testReflectorBMapping() throws Exception{
+	public void testReflectorBMapping(){
 		//AF BV CP DJ EI GO HY KR LZ MX NW QT SU
-		reflector = new ReflectorImpl(ReflectorType.Umkehrwalze_C);
+		reflector = new ReflectorImpl(ReflectorType.C);
 		Assert.assertEquals(reflector.reflect('A'), 'F');
 		Assert.assertEquals(reflector.reflect('V'), 'B');
 		Assert.assertEquals(reflector.reflect('C'), 'P');

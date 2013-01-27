@@ -8,7 +8,7 @@ import com.johnflan.enigma.reflector.ReflectorType;
 import com.johnflan.enigma.rotor.RotorType;
 import com.johnflan.enigma.scrambler.ScramblerImpl;
 
-public class EnigmaDefaultSetupComparisonTest {
+public class ReferenceTest {
 	
 	private ScramblerImpl mechanism;
 	
@@ -19,9 +19,8 @@ public class EnigmaDefaultSetupComparisonTest {
 					RotorType.I,
 					RotorType.II,
 					RotorType.III,
-					ReflectorType.Umkehrwalze_B,
+					ReflectorType.B,
 					null);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -30,6 +29,8 @@ public class EnigmaDefaultSetupComparisonTest {
 	
 	@Test(enabled=false)
 	public void confirmedEnigmaExample(){
+		//With the default enigma configuration above
+		//ABCDEFG should encrypt to BJELRQZ
 		String plainText = "ABCDEFG";
 		String referenceCipherText = "BJELRQZ";
 		String cipherText = "";
@@ -44,9 +45,7 @@ public class EnigmaDefaultSetupComparisonTest {
 		
 		System.out.println("Resulting cipherText: " + cipherText);
 		Assert.assertEquals(cipherText, referenceCipherText);
-		
 	}
-	
 	
 	@Test
 	public void confirmedEnigmaExampleReversed(){
@@ -64,6 +63,5 @@ public class EnigmaDefaultSetupComparisonTest {
 		
 		System.out.println("Resulting cipherText: " + cipherText);
 		Assert.assertEquals(cipherText, referenceCipherText);
-		
 	}
 }

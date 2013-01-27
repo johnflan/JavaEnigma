@@ -7,13 +7,11 @@ public enum RotorType {
 	III("BDFHJLCPRTXVZNYEIWGAKMUSQO", "V"),
 	IV("ESOVPZJAYQUIRHXLNFTGKDCMWB", "J"),
 	V("VZBRGITYUPSDNHLXAWMJQOFECK", "Z"),
-	
-	//Naval Engigma Rotors
 	VI("JPGVOUMFYQBENHZRDKASXLICTW", "ZM"),
 	VII("NZJHGRCXMYSWBOUFAIVLPEKQDT", "ZM"),
 	VIII("FKQHTLXOCBJSPDZRAMEWNIUYGV", "ZM"),
 	
-	//4 Rotor Naval Enigma could only use one of the
+	//Naval Enigma could only use one of the
 	//following in the number 4 position
 	//and could only be advanced manually
 	Beta("LEYJVCNIXWPBQMDRTAKZGFUHOS", ""),

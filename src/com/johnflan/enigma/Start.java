@@ -28,7 +28,7 @@ public class Start {
 										.addRotor1(RotorType.I)
 										.addRotor2(RotorType.II, 2)
 										.addRotor3(RotorType.III)
-										.addReflector(ReflectorType.Umkehrwalze_B)
+										.addReflector(ReflectorType.B)
 										.build();
 		
 		enigmaMachine.encrypt("Hi");

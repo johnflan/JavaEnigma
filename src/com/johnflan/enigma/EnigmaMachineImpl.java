@@ -19,7 +19,7 @@ public class EnigmaMachineImpl implements EnigmaMachine{
 				RotorType.I,
 				RotorType.II,
 				RotorType.III,
-				ReflectorType.Umkehrwalze_B);
+				ReflectorType.B);
 	}
 	
 	public String encrypt(String plainText){

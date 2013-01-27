@@ -22,6 +22,7 @@ public enum RotorType {
 	
 	private char[] charMapping;
 	private char[] notchChar;
+	private int startPos = 0;
 	
 	RotorType(String charMapping){
 		this.charMapping = charMapping.toCharArray();
@@ -39,6 +40,14 @@ public enum RotorType {
 	
 	public char[] getNotchChars(){
 		return notchChar;
+	}
+	
+	public int getStartPosition(){
+		return startPos;
+	}
+	
+	public void setStartPosition(int startPos){
+		this.startPos = startPos;
 	}
 
 }

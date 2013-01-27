@@ -1,4 +1,4 @@
-package com.johnflan.enigma;
+package com.johnflan.enigma.rotor;
 
 public enum RotorType {
 	

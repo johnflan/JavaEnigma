@@ -1,35 +1,8 @@
 package com.johnflan.enigma;
 
-
-public class EnigmaMachine {
+public interface EnigmaMachine {
 	
-	private Mechanism mechanism;
-	
-	public EnigmaMachine() {
-		mechanism = new Mechanism(	
-				RotorType.I,
-				RotorType.II,
-				RotorType.III,
-				ReflectorType.Umkehrwalze_B,
-				null);
-	}
-		
-
-
-	
-	public String encryptString(String input) throws Exception{
-		input.toUpperCase();
-		char[] inputArray = input.toCharArray();
-		String cipherText = "";
-		
-		for (int i = 0; i < inputArray.length ; i++){
-			cipherText = cipherText + toCipherText(inputArray[i]);
-		}
-		return cipherText;
-	}
-
-	private char toCipherText(char pt) throws Exception{
-		return mechanism.encode(pt);
-	}
+	public String encrypt(String plainText);
+	public char encrypt(char plainText);
 
 }

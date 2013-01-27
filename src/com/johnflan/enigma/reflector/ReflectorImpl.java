@@ -1,15 +1,13 @@
-package com.johnflan.enigma;
+package com.johnflan.enigma.reflector;
 
-public class Reflector {
+public class ReflectorImpl implements Reflector{
 	
 	private char[] mapping;
 	private static final int ASCII_OFFSET = 65;
 	
-	Reflector(ReflectorType reflector){
+	public ReflectorImpl(ReflectorType reflector){
 		mapping = reflector.getMapping();
 	}
-
-	
 
 	public char reflect(char c){
 		int value = charIntValue(c);

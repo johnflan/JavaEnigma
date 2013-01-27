@@ -1,6 +1,6 @@
-package com.johnflan.enigma;
+package com.johnflan.enigma.rotor;
 
-public class Rotor {
+public class RotorImpl implements Rotor{
 	
 	private char[] mapping;
 	private char[] reverseMapping;
@@ -8,11 +8,12 @@ public class Rotor {
 	private int rotorPosition = 0;
 	private static final int ASCII_OFFSET = 65;
 	
-	Rotor(int startSetting, RotorType rotor) {
+	public RotorImpl(int startSetting, RotorType rotor) {
+		rotorPosition = startSetting;
 		mapping = rotor.getMapping();
 	}
 	
-	Rotor(RotorType rotor){
+	public RotorImpl(RotorType rotor){
 
 		mapping = rotor.getMapping();
 		reverseMapping();
@@ -35,7 +36,6 @@ public class Rotor {
 		
 		char convertedValue = convertRotorOutputForNotchPosition(output);
 		
-		System.out.println(charInput + " -> " + convertedValue);
 		return convertedValue;
 	}
 	
@@ -48,7 +48,6 @@ public class Rotor {
 		char output = reverseMapping[convertedMapping];
 		char convertedValue = convertRotorOutputForNotchPosition(output);
 
-		System.out.println(charInput + " -> " + convertedValue);
 		return convertedValue;
 	}
 	

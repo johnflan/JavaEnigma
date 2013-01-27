@@ -3,10 +3,13 @@ package com.johnflan.enigma;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.johnflan.enigma.reflector.ReflectorType;
+import com.johnflan.enigma.rotor.RotorType;
+
 
 public class MechanismTest {
 	
-	Mechanism mechanism;
+	Scrambler mechanism;
 	
 	private static final char A = 'A';
 	private static final char B = 'B';
@@ -323,7 +326,7 @@ public class MechanismTest {
 	
 	private void resetMechanism() throws Exception{
 		
-		mechanism = new Mechanism(
+		mechanism = new Scrambler(
 				RotorType.I,
 				RotorType.II,
 				RotorType.III,

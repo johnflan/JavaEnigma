@@ -4,14 +4,17 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.johnflan.enigma.reflector.ReflectorType;
+import com.johnflan.enigma.rotor.RotorType;
+
 public class EnigmaDefaultSetupComparisonTest {
 	
-	private Mechanism mechanism;
+	private Scrambler mechanism;
 	
 	@BeforeMethod
 	private void setSetup(){
 		try {
-			mechanism = new Mechanism(
+			mechanism = new Scrambler(
 					RotorType.I,
 					RotorType.II,
 					RotorType.III,

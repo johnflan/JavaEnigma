@@ -59,5 +59,4 @@ public class EnigmaMachineTest {
 		Assert.assertEquals(machineOutput, validText);
 		
 	}
-
 }

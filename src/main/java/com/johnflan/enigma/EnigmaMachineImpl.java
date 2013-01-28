@@ -2,10 +2,11 @@ package com.johnflan.enigma;
 
 import com.johnflan.enigma.scrambler.Scrambler;
 
+import static com.johnflan.enigma.scrambler.Util.ASCII_OFFSET;
+
 public class EnigmaMachineImpl implements EnigmaMachine{
 	
 	private Scrambler scrambler;
-	private static final int ASCII_OFFSET = 65;
 	
 	public EnigmaMachineImpl(Scrambler scrambler) {
 		this.scrambler = scrambler;

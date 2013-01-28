@@ -4,27 +4,23 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.johnflan.enigma.scrambler.Scrambler;
 import com.johnflan.enigma.scrambler.ScramblerImpl;
 import com.johnflan.enigma.scrambler.reflector.ReflectorType;
 import com.johnflan.enigma.scrambler.rotor.RotorType;
 
 public class ReferenceTest {
 	
-	private ScramblerImpl mechanism;
+	private Scrambler scrambler;
 	
 	@BeforeMethod
 	private void setSetup(){
-		try {
-			mechanism = new ScramblerImpl(
-					RotorType.I,
-					RotorType.II,
-					RotorType.III,
-					ReflectorType.B,
-					null);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		scrambler = new ScramblerImpl(
+				RotorType.I,
+				RotorType.II,
+				RotorType.III,
+				ReflectorType.B,
+				null);
 	}
 	
 	@Test
@@ -36,7 +32,7 @@ public class ReferenceTest {
 		String cipherText = "";
 		
 		for (char pt : plainText.toCharArray()){
-			cipherText += mechanism.encode(pt);
+			cipherText += scrambler.encode(pt);
 		}
 		
 		System.out.println("Resulting cipherText: " + cipherText);
@@ -50,7 +46,7 @@ public class ReferenceTest {
 		String cipherText = "";
 		
 		for (char pt : plainText.toCharArray()){
-			cipherText += mechanism.encode(pt);
+			cipherText += scrambler.encode(pt);
 		}
 		
 		System.out.println("Resulting cipherText: " + cipherText);

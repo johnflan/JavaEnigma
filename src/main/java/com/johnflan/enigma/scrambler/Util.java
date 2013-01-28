@@ -2,12 +2,11 @@ package com.johnflan.enigma.scrambler;
 
 public class Util {
 	
-	private static final int ASCII_OFFSET = 65;
+	public static final int ASCII_OFFSET = 65;
 	
 	public static int toInt(char input){
 		int value = (int) input;
 		value = value - ASCII_OFFSET;
-
 		return value;
 	}
 	

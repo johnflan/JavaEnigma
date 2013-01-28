@@ -1,5 +1,8 @@
 package com.johnflan.enigma.scrambler.rotor;
 
+import static com.johnflan.enigma.scrambler.Util.toChar;
+import static com.johnflan.enigma.scrambler.Util.toInt;
+
 public class RotorImpl implements Rotor{
 	
 	private char[] mapping;
@@ -79,13 +82,6 @@ public class RotorImpl implements Rotor{
 			rotorPosition = ++rotorPosition % 25;
 		}
 	}
-
-	private int toInt(char input){
-		int value = (int) input;
-		value = value - ASCII_OFFSET;
-
-		return value;
-	}
 	
 	private void buildNotchSteps(char[] notchChars){
 		notchPositions = new int[notchChars.length];
@@ -93,10 +89,6 @@ public class RotorImpl implements Rotor{
 			int notchCharLocation = (int) notchChars[i];
 			notchPositions[i] = notchCharLocation - ASCII_OFFSET;
 		}
-	}
-	
-	private char toChar(int input){
-		return (char) (input + ASCII_OFFSET);
 	}
 	
 	public String toString(){

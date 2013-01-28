@@ -27,7 +27,7 @@ public class ReferenceTest {
 		}
 	}
 	
-	@Test(enabled=false)
+	@Test
 	public void confirmedEnigmaExample(){
 		//With the default enigma configuration above
 		//ABCDEFG should encrypt to BJELRQZ
@@ -36,11 +36,7 @@ public class ReferenceTest {
 		String cipherText = "";
 		
 		for (char pt : plainText.toCharArray()){
-			try {
-				cipherText += mechanism.encode(pt);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			cipherText += mechanism.encode(pt);
 		}
 		
 		System.out.println("Resulting cipherText: " + cipherText);
@@ -54,11 +50,7 @@ public class ReferenceTest {
 		String cipherText = "";
 		
 		for (char pt : plainText.toCharArray()){
-			try {
-				cipherText += mechanism.encode(pt);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			cipherText += mechanism.encode(pt);
 		}
 		
 		System.out.println("Resulting cipherText: " + cipherText);

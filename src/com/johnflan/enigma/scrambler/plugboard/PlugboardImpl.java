@@ -1,9 +1,12 @@
 package com.johnflan.enigma.scrambler.plugboard;
 
+import static com.johnflan.enigma.scrambler.Util.toChar;
+import static com.johnflan.enigma.scrambler.Util.toInt;
+import static com.johnflan.enigma.scrambler.Util.validChar;
+
 public class PlugboardImpl implements Plugboard {
 	
 	private int[] plugs = new int[26];
-	private static final int ASCII_OFFSET = 65;
 	
 	public PlugboardImpl(){
 		for (int i = 0; i < plugs.length; i++){
@@ -35,22 +38,4 @@ public class PlugboardImpl implements Plugboard {
 		
 		return this;
 	}
-	
-	private boolean validChar(char c){
-		int charValue = ((int) c) - ASCII_OFFSET;
-		if (charValue < 0 || charValue > 25){
-			return false;
-		}
-		return true;
-	}
-	
-	private char toChar(int i){
-		return (char) (i + ASCII_OFFSET);
-	}
-	
-	private int toInt(char c){
-		int intValue = (int) c;
-		return intValue - ASCII_OFFSET;
-	}
-
 }

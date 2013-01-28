@@ -11,11 +11,7 @@ import com.johnflan.enigma.scrambler.rotor.RotorType;
 
 public class ScramblerImpl implements Scrambler{
 	
-	private Rotor rotor1;
-	private Rotor rotor2;
-	private Rotor rotor3;
-	private Rotor rotor4;
-
+	private Rotor[] rotors = new Rotor[4];
 	private Reflector reflector;
 	private Plugboard plugBoard;
 
@@ -35,72 +31,88 @@ public class ScramblerImpl implements Scrambler{
 		configure(rotor1, rotor2, rotor3, rotor4, reflector, plugBoard);
 	}
 	
-	private void configure(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflector, Plugboard plugBoard){
-		if (rotor1 != null)
-			this.rotor1 = new RotorImpl(rotor1);
+	private void configure(RotorType rotor1, RotorType rotor2, RotorType rotor3, RotorType rotor4, ReflectorType reflectorType, Plugboard plugBoard){
+
+		rotors[0] = new RotorImpl(rotor1);
+		rotors[1] = new RotorImpl(rotor2);
+		rotors[2] = new RotorImpl(rotor3);
+
+		if (rotor4 != null){
+			rotors[3] = new RotorImpl(rotor4);
+		}
 		
-		if (rotor2 != null)
-			this.rotor2 = new RotorImpl(rotor2);
+		reflector = new ReflectorImpl(reflectorType);
 		
-		if (rotor3 != null)
-			this.rotor3 = new RotorImpl(rotor3);
+		this.plugBoard = plugBoard;
 		
-		if (rotor4 != null)
-			this.rotor4 = new RotorImpl(rotor4);
-		
-		if (reflector != null)
-			this.reflector = new ReflectorImpl(reflector);
-		
-		if (plugBoard != null){
-			this.plugBoard = plugBoard;
-		} else{
+		if (plugBoard == null){
 			this.plugBoard = new PlugboardImpl();
 		}
 	}
 	
 	public char encode(char pt) {
+		return scramble(pt);
+	}
+	
+	/**
+	 * Encodes a character using rotor's, plugboard and reflector
+	 * 
+	 * This method implements the main mechanism of the Enigma Machine.
+	 * For each character, the rotor's are stepped, the character is passed
+	 * through the plugboard with any connected cables.
+	 * 
+	 * Initially, the rotor's of the machine is called in reverse numerical order,
+	 * passing the electrical signal right to left. After passing the char from
+	 * right to left through the rotor's the reflector is called. After reflection
+	 * we pass the char again through the rotor's in numerical order to represent
+	 * moving from left to right through the rotor's and back through the plugboard.
+	 * 
+	 * @param p (plaintext)
+	 * @return char (ciphertext)
+	 */
+	private char scramble(char p){
+		
 		stepRotors();
 		
-		return plugBoard.convert(rotor3(plugBoard.convert(pt)));
-	}
-	
-	private char rotor1(char c) {
-		if (rotor1 == null)
-			return reflector(c);
-		return rotor1.out( reflector( rotor1.in(c) ));
-	}
-	
-	private char rotor2(char c) {
-		if (rotor2 == null)
-			return reflector(c);
-		return rotor2.out( rotor1( rotor2.in(c) ));
-	}
-	
-	private char rotor3(char c) {
-		if (rotor3 == null)
-			return reflector(c);
-		return rotor3.out( rotor2( rotor3.in(c) ) );
-	}
-	
-	private char reflector(char c) {
-		if (reflector == null)
-			return c;
-		char reflected = reflector.reflect(c);
+		char c = plugBoard.convert(p);
 		
-		return reflected;
+		for(int i = 3; i >= 0; i--){
+			if (rotors[i] == null)
+				continue;
+			c = rotors[i].in(c);
+		}
+		
+		c = reflector.reflect(c);
+		
+		for(int i = 0; i < rotors.length; i++){
+			if (rotors[i] == null)
+				continue;
+			c = rotors[i].out(c);
+		}
+		
+		c = plugBoard.convert(c);
+		
+		return c;
 	}
 	
+	/**
+	 * Step rotor's depending on notch positions.
+	 * 
+	 * The Enigma machine moves the rotors to the next position
+	 * on the key downshift, before the circuit for that encoding
+	 * is made.
+	 */
 	private void stepRotors(){
-		
-		if (rotor2.inNotch()){
-			rotor1.stepRotor();
-			rotor2.stepRotor();
-			rotor3.stepRotor();
-		} else if (rotor3.inNotch()){
-			rotor2.stepRotor();
-			rotor3.stepRotor();
+				
+		if (rotors[1].inNotch()){
+			rotors[0].stepRotor();
+			rotors[1].stepRotor();
+			rotors[2].stepRotor();
+		} else if (rotors[2].inNotch()){
+			rotors[1].stepRotor();
+			rotors[2].stepRotor();
 		} else {
-			rotor3.stepRotor();
+			rotors[2].stepRotor();
 		}
 	}
 }

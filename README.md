@@ -58,12 +58,11 @@ cables in addition to custom start positions for rotors 1-3.
 ### TODO
 + Increase unit test coverage
 + Create a way to implement custom rotors and reflectors
-+ Rotor 4 functionality
 
 ### Dependencies
 + TestNG http://testng.org/doc/index.html
 + Mockito http://code.google.com/p/mockito/
-
++ Maven can be used to build the project
 
 ## Thanks
 Thanks to Marcin Wrzeszcz and Hugh O'Brien for the inspiration to create the

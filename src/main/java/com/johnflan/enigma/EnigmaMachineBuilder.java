@@ -5,7 +5,7 @@ import com.johnflan.enigma.scrambler.plugboard.Plugboard;
 import com.johnflan.enigma.scrambler.reflector.ReflectorType;
 import com.johnflan.enigma.scrambler.rotor.RotorType;
 
-abstract class EnigmaMachineBuilder {
+public class EnigmaMachineBuilder {
 	
 	
 	public static class Builder implements AddRotor2, AddRotor3, AddRotor4OrAddReflector,
